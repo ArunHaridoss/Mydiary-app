@@ -2,3 +2,8 @@ body{
     height:100vh;
     background:rgb(244, 245, 183);
 }
+.timeinfo{
+    display:flex !important;
+    justify-content: end !important;
+    
+}

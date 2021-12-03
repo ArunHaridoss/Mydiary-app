@@ -1,0 +1,14 @@
+{% extends 'base.html' %} 
+{% block content %}  
+<p><b>Title: </b> {{notes.title}}</p>
+<p><b>Notes: </b>{{notes.notes}}</p>
+<hr>
+<p><b><i>Do you really wanna to delete this note?</i></b></p>
+<strong>Please note:</strong>You cannot retrieve your data once it's deleted.
+<form method="POST" action="">
+    {% csrf_token %} 
+    <input type="submit" value="Delete this Note" class="btn btn-danger mt-2 ms-3">
+    <a href="{% url 'notes' %}" class="btn btn-secondary mt-2 ms-3">Cancel</a>
+</form>
+
+{% endblock %}

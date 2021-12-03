@@ -1,0 +1,25 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block content %} 
+<h3> Hello User!!</h3>
+<a href="{% url 'create-notes' %}" class="btn btn-danger">create new entry </a>
+<hr>
+{% for note in notes %}
+
+<h3>{{note.title}}</h3>
+
+<p>{{note.notes}}</p>
+
+
+
+<a href="{% url 'update-notes' note.id %}" class="btn btn-warning">Update this note</a>
+<a href="{% url 'delete-notes' note.id %}" class="btn btn-danger"><i class='bx bx-trash'></i> delete this note</a>
+
+<div class="timeinfo">
+    <span class="badge bg-info me-2"><i>Last modified:</i> {{note.updated}}</span> 
+    <span class="badge bg-success "><b>Created:</b>{{note.created}}</span>
+</div>
+
+<hr>
+{% endfor %}
+{% endblock %}

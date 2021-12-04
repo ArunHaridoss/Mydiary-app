@@ -2,8 +2,20 @@ body{
     height:100vh;
     background:rgb(244, 245, 183);
 }
+.navicon{
+    display:inline;
+    width:100%;
+    color:white;
+}
+.navicon span .btn {
+    color:white !important;
+    background-color: tomato !important;
+    border-radius:50%;
+}
+
 .timeinfo{
     display:flex !important;
     justify-content: end !important;
     
 }
+

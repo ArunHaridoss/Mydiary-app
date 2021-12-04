@@ -20,10 +20,10 @@
                         <div class="carousel-caption">
                             <h2>Notes</h2>
                         </div>
-                        <img src="{% static 'images/carousel1.jpg' %}" alt="" style="height:70vh;" class="d-block w-100">
+                        <img src="{% static 'images/carousel1.jpg' %}" alt="" style="height:90vh;" class="d-block w-100">
                     </div>
                     <div class="carousel-item">
-                        <img src="{% static 'images/carousel2.jpg' %}" alt="" style="height:70vh;"class="d-block w-100">
+                        <img src="{% static 'images/carousel2.jpg' %}" alt="" style="height:90vh;"class="d-block w-100">
                     </div>
 
                 </div>
@@ -41,7 +41,7 @@
                 {% csrf_token %}
                 <input type="submit" value="Log In" class="btn btn-info">
             </form>
-            <p>Don't you have an account?please <a href="#">click here </a>to sign up!</p>
+            <p>Don't you have an account?please <a href="{% url 'register' %}">click here </a>to sign up!</p>
             <hr>
             <p>-------------------------------------------OR-------------------------------------</p>
             <a href="#" class="btn btn-danger">Continue as a Guest user</a>

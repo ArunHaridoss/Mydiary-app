@@ -1,7 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Notes
-from .forms import notesForm,RegisterForm
-from django.contrib import messages
+
 
 # Create your views here.
 def home(request):
@@ -40,14 +39,3 @@ def deleteNotes(request,pk):
         return redirect('/notes/')
     return render(request,'diaryapp/delete_note.html',context)
 
-def Register(request):
-    form = RegisterForm()
-    context = {'form':form}
-    if request.method == "POST":
-        forms = RegisterForm(request.POST)
-        if forms.is_valid():
-            forms.save()
-            return redirect('/home/')
-        else:
-            return render(request,'diaryapp/register.html',context)
-    return render(request,'diaryapp/register.html',context)

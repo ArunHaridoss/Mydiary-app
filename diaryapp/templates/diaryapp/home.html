@@ -37,6 +37,7 @@
 
         </div>
         <div class="col-6">
+            
             {% if messages %} 
             {% for message in messages %}
             <div class="alert alert-danger alert-dismissible mt-3"role="alert">
@@ -45,6 +46,11 @@
             </div>
             {% endfor %} 
             {% endif %}
+            {% if request.user.is_authenticated %}
+            <h3>You are already successfully Logged In</h3>
+            <a href="{% url 'notes' %}" class="btn btn-success">Continue to your account</a>
+            {% else %} 
+            <h3 style="text-align:center;">Login Form</h3>
             <form method="POST" action="">
                 {% csrf_token %}
                 <div class="form-group mb-2">
@@ -59,8 +65,10 @@
             </form>
             <p>Don't you have an account?please <a href="{% url 'register' %}">click here </a>to sign up!</p>
             <hr>
-            <p>-------------------------------------------OR-------------------------------------</p>
-            <a href="#" class="btn btn-danger">Continue as a Guest user</a>
+       
+            
+           {% endif %}
+    
  
         </div>
     </div>

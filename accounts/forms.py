@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 class registerForm(UserCreationForm):
+    email = forms.EmailField()
+    first_name = forms.CharField(max_length=200)
+    last_name = forms.CharField(max_length=200)
     password1 = forms.CharField(max_length=20,widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Enter your password'}))
     password2 = forms.CharField(max_length=20,widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Re-enter your password'}))
     check=forms.BooleanField()

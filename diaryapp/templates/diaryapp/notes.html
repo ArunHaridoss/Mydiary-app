@@ -4,7 +4,7 @@
 
 <hr>
 {% if request.user.is_authenticated %}
-<h3> Hello {{request.user}}</h3> 
+<h3 style="background-color: cadetblue;"> Hello {{request.user}}</h3> 
 <a href="{% url 'logout' %}" class="btn btn-warning">Log out</a>
 {% else %} 
 <a href="{% url 'home' %}" class="btn btn-info">Login</a>

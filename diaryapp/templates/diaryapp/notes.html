@@ -1,8 +1,18 @@
 {% extends 'base.html' %} 
 {% load static %}
 {% block content %} 
-<h3> Hello User!!</h3>
+
+<hr>
+{% if request.user.is_authenticated %}
+<h3> Hello {{request.user}}</h3> 
+<a href="{% url 'logout' %}" class="btn btn-warning">Log out</a>
+{% else %} 
+<a href="{% url 'home' %}" class="btn btn-info">Login</a>
+{% endif %}
+<hr>
 <a href="{% url 'create-notes' %}" class="btn btn-danger">create new entry </a>
+<hr>
+
 <hr>
 {% for note in notes %}
 
@@ -21,5 +31,6 @@
 </div>
 
 <hr>
+
 {% endfor %}
 {% endblock %}

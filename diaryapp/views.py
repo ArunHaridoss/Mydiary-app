@@ -1,12 +1,39 @@
 from django.shortcuts import render,redirect
 from .models import Notes
+from .forms import notesForm
+from accounts.forms import registerForm
+from django.contrib.auth import authenticate,login,logout
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView
+from django.urls import reverse_lazy
 
+class customLoginView(LoginView):
+    template_name = 'diaryapp/login.html'
+    fields="__all__"
+    redirect_authenticated_user = True
 
+    def get_success_url(self):
+        return reverse_lazy('notes')
 # Create your views here.
 def home(request):
-    return render (request,'diaryapp/home.html')
+    forms = registerForm()
+    if request.method=="POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password1')
+
+        if username and password:
+            user = authenticate(username = username, password = password)
+            if user is not None:
+                login(request,user)
+                return redirect('notes')
+            else:
+                messages.error(request, "username or password is not correct. Please enter valid Login details")    
+    return render (request,'diaryapp/home.html',{'form':forms})
+
 def notes(request):
-    notes = Notes.objects.all()
+    
+    notes = Notes.objects.filter(user = request.user)
     context = {'notes':notes}
     return render(request,"diaryapp/notes.html",context)
 
@@ -16,6 +43,7 @@ def createNotes(request):
     if request.method == "POST":
         note = notesForm(request.POST)
         if note.is_valid():
+            note.instance.user = request.user
             note.save()
             return redirect('/notes/')
     return render(request,'diaryapp/create_note.html',context)
@@ -39,3 +67,6 @@ def deleteNotes(request,pk):
         return redirect('/notes/')
     return render(request,'diaryapp/delete_note.html',context)
 
+'''def logoutuser(request):
+    logout(request)
+    return redirect('home')'''

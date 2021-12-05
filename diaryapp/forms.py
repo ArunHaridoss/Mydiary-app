@@ -6,7 +6,7 @@ from .models import Notes
 class notesForm(ModelForm):
     class Meta:
         model = Notes
-        fields ="__all__"
+        fields =['title','notes']
 
 
 

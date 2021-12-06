@@ -2,19 +2,10 @@ from django.shortcuts import render,redirect
 from .models import Notes
 from .forms import notesForm
 from accounts.forms import registerForm
-from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth import authenticate,login
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import LoginView
-from django.urls import reverse_lazy
 
-class customLoginView(LoginView):
-    template_name = 'diaryapp/login.html'
-    fields="__all__"
-    redirect_authenticated_user = True
 
-    def get_success_url(self):
-        return reverse_lazy('notes')
 # Create your views here.
 def home(request):
     forms = registerForm()
@@ -66,7 +57,3 @@ def deleteNotes(request,pk):
         notes.delete()
         return redirect('/notes/')
     return render(request,'diaryapp/delete_note.html',context)
-
-'''def logoutuser(request):
-    logout(request)
-    return redirect('home')'''
